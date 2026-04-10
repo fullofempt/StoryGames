@@ -4,24 +4,25 @@ import SocialLinks from "../components/common/SocialLinks.astro";
 import { socials } from "@/data/socials.ts";
 ---
 
-<footer id="contacts" class="relative overflow-hidden bg-[#12091d] pt-20">
-  <div
-    class="absolute inset-0 opacity-35"
-    style="background-image:url('/images/footer/station-bg.png'); background-size:cover; background-position:center;"
-  >
-  </div>
+<footer id="contacts" class="relative overflow-hidden bg-[#12091d] pt-30">
+  <Container>
+    <div
+      class="absolute inset-0 opacity-35"
+      style="background-image:url('/images/footer/station-bg.png'); background-size:cover; background-position:center;"
+    >
+    </div>
 
-    <div class="relative z-10 py-20 text-left px-5">
-      <h3 class="font-orbitron text-3xl uppercase text-white md:text-4xl">
+    <div class="relative text-center pb-30">
+      <h3 class="font-handil text-3xl uppercase text-white md:text-4xl">
         StoryGames
       </h3>
 
-      <p class="text-left mt-4 max-w-2xl text-white/75">
+      <p class="mx-auto mt-4 max-w-2xl text-center text-white/75">
         Инди-студия из Перми. Делаем атмосферные игры, рассказываем истории и
         собираем вокруг себя людей, которым это действительно важно.
       </p>
 
-      <div class="mt-8">
+      <div class="flex mt-8 itmes-center justify-center">
         <SocialLinks items={socials} />
       </div>
 
@@ -29,4 +30,5 @@ import { socials } from "@/data/socials.ts";
         © StoryGames. Все права защищены.
       </div>
     </div>
+  </Container>
 </footer>

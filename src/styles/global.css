@@ -1,8 +1,42 @@
 @import "tailwindcss";
-/* 
-:root {
-  --bg: #140b20;
-  --text: #ffffff;
+@font-face {
+  font-family: "Aire Exterior";
+  src: url("../assets/fonts/AireExterior.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "K2D";
+  src: url("../assets/fonts/k2d-extrabold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Manrope";
+  src: url("../assets/fonts/manrope-extrabold.otf") format("opentype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Space Age Cyrillic";
+  src: url("../assets/fonts/SpaceAgeCyrillicRegular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Handil Pro";
+  src: url("../assets/fonts/HandilPro-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
 }
 
 html {
@@ -11,9 +45,9 @@ html {
 
 body {
   margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: Manrope, Arial, sans-serif;
+  background: #140b20;
+  color: white;
+  font-family: "Manrope", Arial, sans-serif;
 }
 
 img {
@@ -25,14 +59,24 @@ a {
   text-decoration: none;
 }
 
+
+
+.font-aire {
+  font-family: "Aire Exterior", sans-serif;
+}
+
 .font-k2d {
   font-family: "K2D", sans-serif;
 }
 
-.font-hand {
-  font-family: "Handil Pro", cursive;
+.font-manrope {
+  font-family: "Manrope", sans-serif;
 }
 
-.font-orbitron {
-  font-family: "Orbitron", sans-serif;
-} */
+.font-space {
+  font-family: "Space Age Cyrillic", sans-serif;
+}
+
+.font-handil {
+  font-family: "Handil Pro", sans-serif;
+}

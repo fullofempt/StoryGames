@@ -5,28 +5,36 @@ const text =
 
 <template>
   <section class="relative overflow-hidden border-y border-cyan-300/40 bg-[#EED200]">
-    <div class="absolute inset-x-0 top-1/2 h-8 -translate-y-1/2 bg-[#00A8CE] blur-xl"></div>
-    <div class="relative bg-[#00A8CE] py-2">
-      <div class="ticker whitespace-nowrap font-orbitron text-lg uppercase text-white md:text-2xl">
-        <span class="mx-6">{{ text }}</span>
-        <span class="mx-6">{{ text }}</span>
+    <div class="absolute inset-x-0 top-1/2 h-16 -translate-y-1/2 bg-[#00A8CE] blur-xl"></div>
+    <div class="relative bg-[#00A8CE]">
+      <div class="ticker-wrap flex items-center justify-center overflow-hidden">
+        <div class="ticker font-space whitespace-nowrap text-[20px] mb-2 text-white md:text-2xl">
+          <span class="mx-3">{{ text }}</span>
+          <span class="mx-3">{{ text }}</span>
+        </div>
       </div>
     </div>
   </section>
 </template>
 
 <style scoped>
+.ticker-wrap {
+  width: 100%;
+}
+
 .ticker {
-  display: inline-block;
-  min-width: 200%;
+  display: inline-flex;
+  align-items: center;
+  min-width: max-content;
   animation: ticker 24s linear infinite;
 }
+
 @keyframes ticker {
   0% {
-    transform: translateX(0%);
+    transform: translateX(25%);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(-25%);
   }
 }
 </style>

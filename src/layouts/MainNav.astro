@@ -1,20 +1,25 @@
 ---
 import { navItems } from "../data/nav";
+
+const currentPath = Astro.url.pathname;
+
+const isActive = (href: string) => {
+  if (href === "/") return currentPath === "/";
+  return currentPath.startsWith(href);
+};
 ---
 
-<nav class="hidden items-center gap-5 lg:flex xl:gap-7">
-  {
-    navItems.map((item, index) => (
-      <a
-        href={item.href}
-        class:list={[
-          "relative text-[14px] uppercase tracking-[0.04em] text-white transition hover:text-white/80 xl:text-[15px]",
-          index === 0 &&
-            "after:absolute after:-bottom-2 after:left-0 after:h-[2px] after:w-full after:rounded after:bg-[#7AF6EB]",
-        ]}
-      >
-        {item.label}
-      </a>
-    ))
-  }
+<nav class="hidden  items-center gap-5 lg:flex xl:gap-7">
+  {navItems.map((item) => (
+    <a
+      href={item.href}
+      class:list={[
+        "relative text-[14px] uppercase tracking-[0.04em] text-white transition hover:text-white/80 xl:text-[15px]",
+        isActive(item.href) &&
+          "after:absolute after:-bottom-2 after:left-0 after:h-[2px] after:w-full after:rounded after:bg-[#7AF6EB]",
+      ]}
+    >
+      {item.label}
+    </a>
+  ))}
 </nav>
