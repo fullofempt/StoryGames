@@ -1,0 +1,33 @@
+---
+import Container from '../components/common/Container.astro';
+import SocialLinks from '../components/common/SocialLinks.astro';
+import { socials } from '@/data/socials.ts';
+---
+
+<footer id="contacts" class="relative overflow-hidden bg-[#12091d] pt-20">
+  <div
+    class="absolute inset-0 opacity-35"
+    style="background-image:url('/images/footer/station-bg.png'); background-size:cover; background-position:center;"
+  ></div>
+
+  <Container>
+    <div class="relative z-10 py-12 text-center">
+      <h3 class="font-orbitron text-3xl uppercase tracking-[0.15em] text-white md:text-4xl">
+        StoryGames
+      </h3>
+
+      <p class="mx-auto mt-4 max-w-2xl text-white/75">
+        Инди-студия из Перми. Делаем атмосферные игры, рассказываем истории и собираем вокруг себя людей,
+        которым это действительно важно.
+      </p>
+
+      <div class="mt-8">
+        <SocialLinks items={socials} />
+      </div>
+
+      <div class="mt-10 border-t border-white/10 pt-6 text-sm text-white/60">
+        © StoryGames. Все права защищены.
+      </div>
+    </div>
+  </Container>
+</footer>

@@ -1,0 +1,39 @@
+---
+import Container from '../common/Container.astro';
+import SiteHeader from '@/layouts/SiteHeader.astro';
+import AboutCard from './AboutCard.astro';
+---
+
+<section class="relative overflow-hidden bg-[#1a1028]">
+  <div
+    class="absolute inset-0 bg-cover bg-center opacity-60"
+    style="background-image:url('/images/hero/land.png')"
+  ></div>
+
+  <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(18,8,32,0.3)_0%,rgba(31,18,56,0.55)_45%,rgba(50,90,191,0.32)_100%)]"></div>
+
+  <!-- <div
+    class="pointer-events-none absolute bottom-0 left-0 right-0 h-[240px] bg-cover bg-center md:h-[360px]"
+    style="background-image:url('/images/hero/hero-bg.png')"
+  ></div> -->
+
+  <SiteHeader />
+
+  <Container>
+    <div class="relative z-10 flex min-h-[980px] flex-col items-center justify-center pt-28 pb-28 text-center">
+      <img
+        src="/images/hero/logo-main.png"
+        alt="StoryGames Logo"
+        class="mb-6 h-32 w-32 object-contain drop-shadow-[0_8px_18px_rgba(0,0,0,0.6)] md:h-52 md:w-52"
+      />
+
+      <h1 class="font-k2d text-5xl font-extrabold uppercase leading-none text-white drop-shadow-[0_6px_10px_rgba(0,0,0,0.4)] md:text-7xl lg:text-[110px]">
+        STORYGAMES
+      </h1>
+
+      <div class="mt-10 w-full">
+        <AboutCard />
+      </div>
+    </div>
+  </Container>
+</section>

@@ -1,0 +1,17 @@
+---
+import { navItems } from "@/data/nav";
+---
+
+<nav class="hidden items-center gap-8 lg:flex">
+  {navItems.map((item, index) => (
+    <a
+      href={item.href}
+      class:list={[
+        'relative text-sm uppercase tracking-wide text-white/90 transition hover:text-white',
+        index === 0 && 'after:absolute after:-bottom-2 after:left-0 after:h-[3px] after:w-full after:rounded after:bg-[#7AF6EB]',
+      ]}
+    >
+      {item.label}
+    </a>
+  ))}
+</nav>

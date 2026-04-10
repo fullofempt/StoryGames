@@ -1,0 +1,22 @@
+---
+import Container from '../common/Container.astro';
+import SectionTitle from '../common/SectionTitle.astro';
+import { partners } from '../../data/partners';
+---
+
+<section class="py-20 transparent">
+  <Container>
+    <SectionTitle title="Наши партнеры" />
+
+    <div class="mt-12 grid grid-cols-2 gap-6 md:grid-cols-4">
+      {partners.map((partner) => (
+        <a
+          href={partner.href}
+          class="flex min-h-[140px] items-center justify-center rounded-2xl border border-white/10 p-6 transition hover:-translate-y-1"
+        >
+          <img src={partner.image} alt={partner.name} class="max-h-20 w-auto object-contain" />
+        </a>
+      ))}
+    </div>
+  </Container>
+</section>

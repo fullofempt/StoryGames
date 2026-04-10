@@ -1,1 +1,38 @@
 @import "tailwindcss";
+/* 
+:root {
+  --bg: #140b20;
+  --text: #ffffff;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Manrope, Arial, sans-serif;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+.font-k2d {
+  font-family: "K2D", sans-serif;
+}
+
+.font-hand {
+  font-family: "Handil Pro", cursive;
+}
+
+.font-orbitron {
+  font-family: "Orbitron", sans-serif;
+} */

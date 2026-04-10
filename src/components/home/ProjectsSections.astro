@@ -1,0 +1,30 @@
+---
+import Container from '../common/Container.astro';
+import SectionTitle from '../common/SectionTitle.astro';
+import ProjectCard from './ProjectCard.astro';
+import { projects } from '../../data/projects';
+---
+
+<section
+  id="projects"
+  class="relative overflow-hidden border-y-[3px] border-[#74AABA] bg-[linear-gradient(90deg,#3D264F_9.62%,#4F2A46_100%)] py-20"
+>
+  <div
+    class="absolute inset-0 opacity-25"
+    style="background:
+      linear-gradient(0deg, rgba(71,40,74,0.7) 66.89%, rgba(225,95,120,0.7) 100%),
+      url('/images/hero/hero-bg.png') center/cover no-repeat;"
+  ></div>
+
+  <Container>
+    <div class="relative z-10">
+      <SectionTitle title="Разработка собственных игр" />
+
+      <div class="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-2">
+        {projects.map((project) => (
+          <ProjectCard {...project} />
+        ))}
+      </div>
+    </div>
+  </Container>
+</section>

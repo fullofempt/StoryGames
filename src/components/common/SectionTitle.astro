@@ -1,0 +1,16 @@
+---
+interface Props {
+  title: string;
+  center?: boolean;
+}
+const { title, center = true } = Astro.props;
+---
+
+<h2
+  class:list={[
+    'font-orbitron text-3xl uppercase tracking-[0.12em] text-white md:text-4xl lg:text-5xl',
+    center && 'text-center',
+  ]}
+>
+  {title}
+</h2>
