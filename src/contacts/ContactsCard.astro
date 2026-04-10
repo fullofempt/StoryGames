@@ -1,0 +1,52 @@
+---
+import SocialLinks from "../components/common/SocialLinks.astro";
+import { socials } from "../data/socials";
+
+interface Props {
+    title: string;
+    text: string;
+}
+
+const { title, text } = Astro.props;
+---
+
+<section class="py-10">
+    <div class="mx-auto max-w-[1716px] px-4">
+        <article
+            class="rounded-[60px] bg-[rgba(217,217,217,0.2)] px-6 py-8 md:px-10 md:py-10 lg:px-12 lg:py-12"
+        >
+            <div class="flex flex-col gap-8">
+                <div
+                    class="flex flex-col items-start gap-6 md:flex-row md:items-center"
+                >
+                    <img
+                        src="/images/hero/LOGO.png"
+                        alt="StoryGames"
+                        class="h-[120px] w-[120px] object-contain md:h-[160px] md:w-[160px]"
+                    />
+
+                    <h1
+                        class="font-k2d text-4xl font-extrabold uppercase text-white drop-shadow-[0_6px_10px_rgba(0,0,0,0.35)] md:text-6xl lg:text-[96px] lg:leading-none"
+                    >
+                        {title}
+                    </h1>
+                </div>
+
+                <div
+                    class="max-w-[1643px] whitespace-pre-line text-base font-light leading-7 text-white md:text-lg md:leading-8 lg:text-[25px] lg:leading-[34px]"
+                >
+                    {text}
+                </div>
+            </div>
+            <div
+                class="mx-auto flex max-w-[420px] flex-col items-center justify-center mt-10 px-4 text-center"
+            >
+                <div class="mb-4 text-lg font-extrabold uppercase text-white">
+                    СОЦИАЛЬНЫЕ СЕТИ
+                </div>
+
+                <SocialLinks items={socials} />
+            </div>
+        </article>
+    </div>
+</section>

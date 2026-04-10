@@ -1,0 +1,28 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import NewsHero from "../news/NewsHero.astro";
+import NewsSwitch from "../news/NewsSwitch.astro";
+import NewsFeaturedCard from "../news/NewsFeaturedCard.astro";
+import ProjectsFooter from "../projects/ProjectsFooter.astro";
+import { featuredNews } from "../data/news-page";
+import SiteHeader from "@/layouts/SiteHeader.astro";
+---
+
+<BaseLayout title="Новости | StoryGames">
+    <div class="relative overflow-hidden">
+        <div
+            class="absolute inset-0 -z-10 scale-105 blur-md"
+            style="background-image:url('/images/projects/bg-proj.png'); background-size:cover; background-position:center; background-repeat:no-repeat;"
+        >
+        </div>
+
+        <div class="absolute inset-0 -z-10 bg-[#2F1676]/55"></div>
+
+        <div class="relative z-10">
+            <NewsHero />
+            <NewsSwitch />
+            <NewsFeaturedCard {...featuredNews} />
+            <ProjectsFooter />
+        </div>
+    </div>
+</BaseLayout>

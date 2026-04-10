@@ -1,0 +1,22 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ContactsHero from "../contacts/ContactsHero.astro";
+import ContactsCard from "../contacts/ContactsCard.astro";
+import { contactsContent } from "../data/contacts-page";
+---
+
+<BaseLayout title="Контакты | StoryGames">
+  <div class="relative min-h-screen overflow-hidden">
+    <div
+      class="absolute inset-0 -z-10 scale-110 blur-[10px]"
+      style="background-image:url('/images/projects/bg-proj.png'); background-size:cover; background-position:top center; background-repeat:repeat-y;"
+    ></div>
+
+    <div class="absolute inset-0 -z-10 bg-[#2F1676]/55"></div>
+
+    <div class="relative z-10">
+      <ContactsHero />
+      <ContactsCard {...contactsContent} />
+    </div>
+  </div>
+</BaseLayout>

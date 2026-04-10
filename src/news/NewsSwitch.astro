@@ -1,0 +1,22 @@
+---
+import { newsTabs } from '../data/news-page';
+import Container from '@/components/common/Container.astro';
+---
+
+<Container>
+<div class="mx-auto w-full max-w-[785px] rounded-full">
+  <div class="grid grid-cols-2 gap-[4px]">
+    {newsTabs.map((tab) => (
+      <button
+        type="button"
+        class:list={[
+          'h-[40px] rounded-full  text-center font-light text-[20px] uppercase text-white transition md:text-2xl lg:text-[25px]',
+          tab.active ? 'bg-white/20' : 'bg-white/5 hover:bg-white/20',
+        ]}
+      >
+        {tab.label}
+      </button>
+    ))}
+  </div>
+</div>
+</Container>

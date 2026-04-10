@@ -4,8 +4,7 @@ import MainNav from './MainNav.astro';
 import LanguageSwitcher from './LanguageSwitcher.vue';
 ---
 
-<header class="absolute inset-x-0 top-0 z-30">
-  <Container>
+<header class="absolute inset-x-0 top-0 z-30 px-5">
     <div class="flex h-20 items-center justify-between">
       <div class="flex items-center gap-6 lg:gap-8">
         <a href="/" class="shrink-0">
@@ -21,5 +20,4 @@ import LanguageSwitcher from './LanguageSwitcher.vue';
 
       <LanguageSwitcher client:load />
     </div>
-  </Container>
 </header>
