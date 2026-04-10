@@ -1,0 +1,51 @@
+---
+interface Props {
+    title: string;
+    image: string;
+}
+
+const { title, image } = Astro.props;
+---
+
+<section class="py-16">
+    <div class="relative mx-auto max-w-[1660px]">
+        <div
+            class="absolute inset-0 rounded-[60px] bg-white blur-[8px] opacity-25"
+        >
+        </div>
+
+        <div
+            class="relative overflow-hidden rounded-[60px] border-[10px] border-white/90 bg-white"
+        >
+            <img
+                src={image}
+                alt={title}
+                class="h-[320px] w-full object-cover md:h-[520px] lg:h-[760px]"
+            />
+        </div>
+
+        <div class="mt-8 flex items-center justify-center gap-6">
+            <button
+                type="button"
+                class="flex h-[54px] w-[54px] items-center justify-center rounded-full bg-white/10 text-2xl text-white transition hover:bg-white/20"
+                aria-label="Назад"
+            >
+                ←
+            </button>
+
+            <h2
+                class="font-orbitron text-3xl uppercase text-white md:text-5xl lg:text-6xl"
+            >
+                {title}
+            </h2>
+
+            <button
+                type="button"
+                class="flex h-[54px] w-[54px] items-center justify-center rounded-full bg-white/10 text-2xl text-white transition hover:bg-white/20"
+                aria-label="Вперёд"
+            >
+                →
+            </button>
+        </div>
+    </div>
+</section>

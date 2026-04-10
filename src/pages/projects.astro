@@ -1,0 +1,42 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Container from "../components/common/Container.astro";
+import ProjectsHero from "../projects/ProjectsHero.astro";
+import ProjectRowCard from "../projects/ProjectRowCard.astro";
+import FeaturedProject from "../projects/FeaturedProject.astro";
+import ProjectsFooter from "../projects/ProjectsFooter.astro";
+import { projectRows, featuredProject } from "../data/projects-page";
+---
+
+<BaseLayout title="Проекты | StoryGames">
+    <div class="relative overflow-hidden">
+        <div
+            class="absolute inset-0 -z-10 scale-105 blur-md"
+            style="background-image:url('/images/projects/bg-proj.png'); background-size:cover; background-position:center; background-repeat:no-repeat;"
+        >
+        </div>
+
+        <div class="absolute inset-0 -z-10 bg-[#2F1676]/40"></div>
+
+        <div class="relative z-1">
+            <ProjectsHero />
+
+            <section class="pb-10">
+                <Container>
+                    <div class="space-y-10">
+                        {
+                            projectRows.map((project) => (
+                                <ProjectRowCard {...project} />
+                            ))
+                        }
+                    </div>
+
+                    <div class="mt-16 h-[6px] rounded-full bg-white/20"></div>
+                </Container>
+            </section>
+
+            <FeaturedProject {...featuredProject} />
+            <ProjectsFooter />
+        </div>
+    </div>
+</BaseLayout>

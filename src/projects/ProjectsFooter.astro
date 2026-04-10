@@ -1,0 +1,79 @@
+---
+import Container from "../components/common/Container.astro";
+import SocialLinks from "../components/common/SocialLinks.astro";
+import { socials } from "../data/socials";
+---
+
+<section class="pt-16 pb-20">
+    <Container>
+        <div class="grid items-center gap-12 lg:grid-cols-[1.1fr_1fr]">
+            <div>
+                <div class="flex items-center gap-4">
+                    <img
+                        src="/images/hero/logo-main.png"
+                        alt="StoryGames"
+                        class="h-14 w-14 object-contain"
+                    />
+                    <div
+                        class="font-k2d text-3xl font-extrabold text-white md:text-4xl"
+                    >
+                        STORYGAMES
+                    </div>
+                </div>
+
+                <p
+                    class="mt-8 max-w-[720px] text-base font-light leading-8 text-white/85 md:text-lg"
+                >
+                    Все материалы и игры, представленные на данном сайте,
+                    защищены авторским правом. Любое копирование,
+                    распространение или иное использование информации и игровых
+                    объектов без предварительного письменного согласия владельца
+                    авторских прав строго запрещено. Информация на сайте
+                    предоставляется исключительно для личного некоммерческого
+                    использования.
+                </p>
+
+                <div class="mt-8">
+                    <div
+                        class="mb-4 text-lg font-extrabold uppercase text-white"
+                    >
+                        Социальные сети
+                    </div>
+                    <SocialLinks items={socials} />
+                </div>
+            </div>
+
+            <div class="flex items-center justify-center lg:justify-center">
+                <div class="grid w-full max-w-[560px] grid-cols-2 gap-3">
+                    <a
+                        href="/"
+                        class="flex h-20 items-center justify-center rounded-full bg-white/10 px-6 text-center text-lg font-bold text-white transition hover:bg-white/20 lg:text-[30px] lg:leading-[30px]"
+                    >
+                        О студии
+                    </a>
+
+                    <a
+                        href="/projects"
+                        class="flex h-20 items-center justify-center rounded-full bg-white/10 px-6 text-center text-lg font-bold text-white transition hover:bg-white/20 lg:text-[30px] lg:leading-[30px]"
+                    >
+                        Наши проекты
+                    </a>
+
+                    <a
+                        href="/news"
+                        class="flex h-20 items-center justify-center rounded-full bg-white/10 px-6 text-center text-lg font-bold text-white transition hover:bg-white/20 lg:text-[30px] lg:leading-[30px]"
+                    >
+                        Новости
+                    </a>
+
+                    <a
+                        href="/contacts"
+                        class="flex h-20 items-center justify-center rounded-full bg-white/10 px-6 text-center text-lg font-bold text-white transition hover:bg-white/20 lg:text-[30px] lg:leading-[30px]"
+                    >
+                        Контакты
+                    </a>
+                </div>
+            </div>
+        </div>
+    </Container>
+</section>
