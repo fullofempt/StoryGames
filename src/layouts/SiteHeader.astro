@@ -7,12 +7,18 @@ import LanguageSwitcher from './LanguageSwitcher.vue';
 <header class="absolute inset-x-0 top-0 z-30">
   <Container>
     <div class="flex h-20 items-center justify-between">
-      <a href="/" class="flex items-center gap-3">
-        <img src="/images/hero/logo-main.png" alt="StoryGames" class="h-12 w-12 object-contain" />
-        <span class="font-semibold tracking-[0.2em] text-white">STORYGAMES</span>
-      </a>
+      <div class="flex items-center gap-6 lg:gap-8">
+        <a href="/" class="shrink-0">
+          <img
+            src="/images/hero/logo-main.png"
+            alt="StoryGames"
+            class="h-10 w-10 object-contain md:h-12 md:w-12"
+          />
+        </a>
 
-      <MainNav />
+        <MainNav />
+      </div>
+
       <LanguageSwitcher client:load />
     </div>
   </Container>

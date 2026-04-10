@@ -1,18 +1,24 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import HeroSection from '../components/home/HeroSection.astro';
-import RunningTicker from '../components/home/RunningTicker.vue';
-import ProjectsSection from '../components/home/ProjectsSections.astro';
-import PartnersSection from '../components/home/PartnersSections.astro';
-import TeamSection from '../components/home/TeamSection.astro';
-import SiteFooter from '../layouts/SiteFooter.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HeroSection from "../components/home/HeroSection.astro";
+import RunningTicker from "../components/home/RunningTicker.vue";
+import ProjectsSection from "../components/home/ProjectsSections.astro";
+import PartnersSection from "../components/home/PartnersSections.astro";
+import TeamSection from "../components/home/TeamSection.astro";
+import SiteFooter from "../layouts/SiteFooter.astro";
 ---
 
 <BaseLayout title="StoryGames">
   <HeroSection />
   <RunningTicker client:load />
   <ProjectsSection />
-  <PartnersSection />
-  <!-- <TeamSection /> -->
+  <div
+    class="inset-0 bg-cover bg-center opacity-100"
+    style="background-image:url('/images/hero/hero-bg.png')"
+  >
+    <TeamSection />
+    <PartnersSection />
+  </div>
+
   <SiteFooter />
 </BaseLayout>
