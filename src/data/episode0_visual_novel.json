@@ -1,0 +1,711 @@
+{
+  "meta": {
+    "project": "StoryGames",
+    "format": "visual-novel-script",
+    "version": "1.0.0",
+    "language": "ru",
+    "notes": [
+      "Формат рассчитан на Vue/Astro фронтенд с пошаговым проигрыванием сцен.",
+      "Шаги меняют только то, что нужно: фон, эмоцию, появление/уход, реплику, переход.",
+      "Если персонаж говорит несколько раз подряд, это просто несколько steps с одним и тем же speaker.",
+      "Если персонаж должен уйти, используется action=exit или отдельный step типа exit.",
+      "Для анимации лица/спрайта используется поле emotion.",
+      "Для будущей верстки удобно хранить текущее состояние сцены в runtime-store, а JSON использовать как источник команд."
+    ]
+  },
+  "assets": {
+    "backgrounds": {
+      "rocketCabin": "/images/novel/backgrounds/rocketCabin.png",
+      "rocketSky": "/images/novel/backgrounds/RocketIlluminatorSky.png"
+    },
+    "transitions": {
+      "fadeIn": "fade-in",
+      "fadeOut": "fade-out"
+    }
+  },
+  "characters": {
+    "yuri": {
+      "name": "Юрий",
+      "role": "капитан",
+      "defaultEmotion": "neutral",
+      "sprites": {
+        "neutral": "/src/assets/characters/yuri/neutral.png",
+        "focused": "/src/assets/characters/yuri/focused.png",
+        "concerned": "/src/assets/characters/yuri/concerned.png",
+        "awkward": "/src/assets/characters/yuri/awkward.png"
+      }
+    },
+    "commandCenter": {
+      "name": "Командный центр",
+      "role": "голос по связи",
+      "voiceOnly": true
+    },
+    "phone": {
+      "name": "Телефон",
+      "role": "голос из телефона",
+      "voiceOnly": true
+    },
+    "selShi": {
+      "name": "Сель Ши",
+      "role": "член экипажа",
+      "defaultEmotion": "anxious",
+      "sprites": {
+        "neutral": "/src/assets/characters/sel-shi/neutral.png",
+        "anxious": "/src/assets/characters/sel-shi/anxious.png",
+        "sad": "/src/assets/characters/sel-shi/sad.png",
+        "soft": "/src/assets/characters/sel-shi/soft.png"
+      }
+    },
+    "john": {
+      "name": "Джон",
+      "role": "член экипажа",
+      "defaultEmotion": "smirk",
+      "sprites": {
+        "neutral": "/src/assets/characters/john/neutral.png",
+        "smirk": "/src/assets/characters/john/smirk.png",
+        "teasing": "/src/assets/characters/john/teasing.png",
+        "thinking": "/src/assets/characters/john/thinking.png"
+      }
+    },
+    "maria": {
+      "name": "Мария",
+      "role": "член экипажа",
+      "defaultEmotion": "annoyed",
+      "sprites": {
+        "neutral": "/src/assets/characters/maria/neutral.png",
+        "annoyed": "/src/assets/characters/maria/annoyed.png",
+        "angry": "/src/assets/characters/maria/angry.png",
+        "dry": "/src/assets/characters/maria/dry.png"
+      }
+    },
+    "jerry": {
+      "name": "Джерри",
+      "role": "член экипажа",
+      "defaultEmotion": "calm",
+      "sprites": {
+        "neutral": "/src/assets/characters/jerry/neutral.png",
+        "calm": "/src/assets/characters/jerry/calm.png",
+        "respectful": "/src/assets/characters/jerry/respectful.png",
+        "serious": "/src/assets/characters/jerry/serious.png"
+      }
+    },
+    "hannah": {
+      "name": "Ханна",
+      "role": "доктор",
+      "defaultEmotion": "neutral",
+      "sprites": {
+        "neutral": "/src/assets/characters/hannah/neutral.png",
+        "skeptical": "/src/assets/characters/hannah/skeptical.png",
+        "kind": "/src/assets/characters/hannah/kind.png",
+        "observing": "/src/assets/characters/hannah/observing.png"
+      }
+    }
+  },
+  "episodes": [
+    {
+      "id": "episode-0",
+      "title": "Эпизод 0",
+      "scenes": [
+        {
+          "id": "scene-0-briefing",
+          "title": "Подготовка к взлету",
+          "initialState": {
+            "background": "rocketCabin",
+            "visibleCharacters": [
+              {
+                "id": "yuri",
+                "slot": "center",
+                "emotion": "focused"
+              }
+            ]
+          },
+          "steps": [
+            {
+              "id": "s001",
+              "type": "say",
+              "speaker": "yuri",
+              "emotion": "focused",
+              "text": "Так, протокол на случай внештатной ситуации № 140 - есть."
+            },
+            {
+              "id": "s002",
+              "type": "say",
+              "speaker": "yuri",
+              "emotion": "focused",
+              "text": "Протокол №141 на случай невыполнения протокола на случай внештатной ситуации № 140 - на месте."
+            },
+            {
+              "id": "s003",
+              "type": "say",
+              "speaker": "yuri",
+              "emotion": "neutral",
+              "text": "Фух, кажется, всё в наличии."
+            },
+            {
+              "id": "s004",
+              "type": "say",
+              "speaker": "yuri",
+              "emotion": "focused",
+              "text": "Командный центр, как слышите, прием."
+            },
+            {
+              "id": "s005",
+              "type": "say",
+              "speaker": "commandCenter",
+              "text": "Слышим вас хорошо, капитан, прием."
+            },
+            {
+              "id": "s006",
+              "type": "say",
+              "speaker": "yuri",
+              "emotion": "focused",
+              "text": "Всё перепроверено, к взлету готовы, прием."
+            },
+            {
+              "id": "s007",
+              "type": "say",
+              "speaker": "commandCenter",
+              "text": "Принято. Запуск через 10 минут, убедитесь, что все члены экипажа займут свои места перед стартом. Конец связи."
+            },
+            {
+              "id": "s008",
+              "type": "transition",
+              "name": "fadeIn",
+              "duration": 500
+            },
+            {
+              "id": "s009",
+              "type": "transition",
+              "name": "fadeOut",
+              "duration": 500
+            }
+          ]
+        },
+        {
+          "id": "scene-1-sel-shi-call",
+          "title": "Звонок домой",
+          "initialState": {
+            "background": "rocketCabin",
+            "visibleCharacters": [
+              {
+                "id": "selShi",
+                "slot": "center",
+                "emotion": "anxious"
+              }
+            ]
+          },
+          "steps": [
+            {
+              "id": "s010",
+              "type": "say",
+              "speaker": "phone",
+              "text": "Сель Ши, я горжусь тобой, ты - первоклассный специалист. Кого угодно в космос не берут, ты это заслужил."
+            },
+            {
+              "id": "s011",
+              "type": "say",
+              "speaker": "selShi",
+              "emotion": "anxious",
+              "text": "Мам, Я… всё еще не настолько уверен в своих силах…"
+            },
+            {
+              "id": "s012",
+              "type": "say",
+              "speaker": "phone",
+              "text": "Ты всё сможешь, не переживай!"
+            },
+            {
+              "id": "s013",
+              "type": "say",
+              "speaker": "selShi",
+              "emotion": "soft",
+              "text": "Спасибо, мама. А папа… не подойдет к телефону?"
+            },
+            {
+              "id": "s014",
+              "type": "say",
+              "speaker": "phone",
+              "text": "Я предлагала ему поговорить с тобой перед вылетом, но…"
+            },
+            {
+              "id": "s015",
+              "type": "say",
+              "speaker": "selShi",
+              "emotion": "sad",
+              "text": "Понятно… Он все еще считает это пустой тратой времени…"
+            },
+            {
+              "id": "s016",
+              "type": "say",
+              "speaker": "phone",
+              "text": "Не обращай внимания! Я уверена, что ты сможешь доказать ему обратное."
+            },
+            {
+              "id": "s017",
+              "type": "say",
+              "speaker": "phone",
+              "text": "…"
+            },
+            {
+              "id": "s018",
+              "type": "say",
+              "speaker": "phone",
+              "text": "Удачи, сынок! Береги себя."
+            },
+            {
+              "id": "s019",
+              "type": "say",
+              "speaker": "selShi",
+              "emotion": "soft",
+              "text": "Да, мам, обязательно."
+            },
+            {
+              "id": "s020",
+              "type": "exit",
+              "target": "selShi"
+            }
+          ]
+        },
+        {
+          "id": "scene-2-john-maria",
+          "title": "Колкости перед стартом",
+          "initialState": {
+            "background": "rocketCabin",
+            "visibleCharacters": [
+              {
+                "id": "john",
+                "slot": "left",
+                "emotion": "teasing"
+              },
+              {
+                "id": "maria",
+                "slot": "right",
+                "emotion": "annoyed"
+              }
+            ]
+          },
+          "steps": [
+            {
+              "id": "s021",
+              "type": "say",
+              "speaker": "john",
+              "emotion": "teasing",
+              "text": "О, привет Кюрье! Я тут подумал над тем, что ты сказала…"
+            },
+            {
+              "id": "s022",
+              "type": "say",
+              "speaker": "john",
+              "emotion": "smirk",
+              "text": "И мне пришла в голову замечательная шутка!"
+            },
+            {
+              "id": "s023",
+              "type": "say",
+              "speaker": "maria",
+              "emotion": "annoyed",
+              "text": "Тц…"
+            },
+            {
+              "id": "s024",
+              "type": "say",
+              "speaker": "maria",
+              "emotion": "dry",
+              "text": "А у меня есть замечательная идея, Джон. Как насчёт перестать травить эти безвкусные шуточки?"
+            },
+            {
+              "id": "s025",
+              "type": "say",
+              "speaker": "maria",
+              "emotion": "dry",
+              "text": "Ну как? Здорово же придумала?"
+            },
+            {
+              "id": "s026",
+              "type": "say",
+              "speaker": "john",
+              "emotion": "teasing",
+              "text": "Ну-ну… Нельзя же быть такой серьёзной язвой… Научись веселиться, зануда!"
+            },
+            {
+              "id": "s027",
+              "type": "say",
+              "speaker": "maria",
+              "emotion": "angry",
+              "text": "Зануда? Да я лучше стану самым обыкновенным камнем, чем позволю миру выпалить хоть одну из твоих шуток, кретин."
+            },
+            {
+              "id": "s028",
+              "type": "say",
+              "speaker": "john",
+              "emotion": "smirk",
+              "text": "Как грубо, Кюрье!"
+            },
+            {
+              "id": "s029",
+              "type": "say",
+              "speaker": "john",
+              "emotion": "thinking",
+              "text": "Кюрье… Кю-рье… Хмм…"
+            },
+            {
+              "id": "s030",
+              "type": "say",
+              "speaker": "maria",
+              "emotion": "annoyed",
+              "text": "…"
+            },
+            {
+              "id": "s031",
+              "type": "say",
+              "speaker": "maria",
+              "emotion": "annoyed",
+              "text": "Что ещё?"
+            },
+            {
+              "id": "s032",
+              "type": "say",
+              "speaker": "john",
+              "emotion": "thinking",
+              "text": "Да вот думаю. Нелегко твою фамилию выговаривать каждый раз."
+            },
+            {
+              "id": "s033",
+              "type": "say",
+              "speaker": "john",
+              "emotion": "teasing",
+              "text": "Как тебя друзья называют?"
+            },
+            {
+              "id": "s034",
+              "type": "say",
+              "speaker": "maria",
+              "emotion": "dry",
+              "text": "Тебе до статуса “друг” - как до Марса на общественном транспорте."
+            },
+            {
+              "id": "s035",
+              "type": "say",
+              "speaker": "john",
+              "emotion": "smirk",
+              "text": "Как удобно, мы как раз отправляемся на Марс! Отличный повод стать друзьями."
+            },
+            {
+              "id": "s036",
+              "type": "say",
+              "speaker": "john",
+              "emotion": "thinking",
+              "text": "Хм…"
+            },
+            {
+              "id": "s037",
+              "type": "say",
+              "speaker": "maria",
+              "emotion": "dry",
+              "text": "Ага. Конечно. Десять раз. Сплю и вижу."
+            },
+            {
+              "id": "s038",
+              "type": "say",
+              "speaker": "maria",
+              "emotion": "annoyed",
+              "text": "Ну, развлекайся, а я пойду."
+            },
+            {
+              "id": "s039",
+              "type": "say",
+              "speaker": "john",
+              "emotion": "teasing",
+              "text": "Пока-пока, “Кюри”!"
+            },
+            {
+              "id": "s040",
+              "type": "say",
+              "speaker": "maria",
+              "emotion": "angry",
+              "text": "Ещё раз меня так назовешь, клянусь, я тебя закопаю на Марсе."
+            },
+            {
+              "id": "s041",
+              "type": "exit",
+              "target": "maria"
+            },
+            {
+              "id": "s042",
+              "type": "exit",
+              "target": "john"
+            }
+          ]
+        },
+        {
+          "id": "scene-3-hannah-jerry",
+          "title": "Психологическая проверка",
+          "initialState": {
+            "background": "rocketCabin",
+            "visibleCharacters": [
+              {
+                "id": "hannah",
+                "slot": "left",
+                "emotion": "neutral"
+              },
+              {
+                "id": "jerry",
+                "slot": "right",
+                "emotion": "respectful"
+              }
+            ]
+          },
+          "steps": [
+            {
+              "id": "s043",
+              "type": "say",
+              "speaker": "jerry",
+              "emotion": "respectful",
+              "text": "Доктор Вирхов, я читал ваше исследование об альфа-волнах и их влиянии на мозг человека. Впечатляющая работа."
+            },
+            {
+              "id": "s044",
+              "type": "say",
+              "speaker": "hannah",
+              "emotion": "skeptical",
+              "text": "Ну раз ты прочитал её полностью, то уже знаешь, что исследование себя не оправдало. В принципе, теория изначально выглядела бесперспективно. И да, зови меня просто Ханна."
+            },
+            {
+              "id": "s045",
+              "type": "say",
+              "speaker": "jerry",
+              "emotion": "calm",
+              "text": "Это в любом случае важный труд, Ханна."
+            },
+            {
+              "id": "s046",
+              "type": "say",
+              "speaker": "hannah",
+              "emotion": "kind",
+              "text": "Спасибо."
+            },
+            {
+              "id": "s047",
+              "type": "say",
+              "speaker": "hannah",
+              "emotion": "observing",
+              "text": "Извини если прозвучит грубо, но мы кажется нигде раньше не встречались. Откуда ты знаешь про это исследование?"
+            },
+            {
+              "id": "s048",
+              "type": "say",
+              "speaker": "hannah",
+              "emotion": "observing",
+              "text": "В свободное время следишь за научным миром?"
+            },
+            {
+              "id": "s049",
+              "type": "say",
+              "speaker": "jerry",
+              "emotion": "serious",
+              "text": "Когда состав команды утвердили, мне дали ваши досье и я их изучил. Разве тебе не давали наши?"
+            },
+            {
+              "id": "s050",
+              "type": "say",
+              "speaker": "hannah",
+              "emotion": "neutral",
+              "text": "Давали конечно, но своего я не видела, также как и ты, полагаю."
+            },
+            {
+              "id": "s051",
+              "type": "say",
+              "speaker": "hannah",
+              "emotion": "observing",
+              "text": "Тяжело было приспосабливаться к гражданской жизни?"
+            },
+            {
+              "id": "s052",
+              "type": "say",
+              "speaker": "jerry",
+              "emotion": "calm",
+              "text": "Непривычно в первое время, но созидать довольно увлекательно. Разработка и конструирование механизмов помогали обрести душевное равновесие."
+            },
+            {
+              "id": "s053",
+              "type": "say",
+              "speaker": "jerry",
+              "emotion": "calm",
+              "text": "Вскоре и спать стал лучше."
+            },
+            {
+              "id": "s054",
+              "type": "say",
+              "speaker": "hannah",
+              "emotion": "skeptical",
+              "text": "Подожди, у тебя были проблемы со сном? Мучали кошмары или ты лунатил? В досье не упоминалось, что ты жаловался на сон во время реабилитации."
+            },
+            {
+              "id": "s055",
+              "type": "say",
+              "speaker": "jerry",
+              "emotion": "serious",
+              "text": "Я не посчитал это важным. Просто чуткость сна повысилась. Не более. Не переживайте, доктор."
+            },
+            {
+              "id": "s056",
+              "type": "say",
+              "speaker": "hannah",
+              "emotion": "kind",
+              "text": "Ладно, но будешь под усиленным наблюдением с моей стороны. Если что-то будет беспокоить, обращайся не раздумывая."
+            },
+            {
+              "id": "s057",
+              "type": "say",
+              "speaker": "jerry",
+              "emotion": "respectful",
+              "text": "Так точно."
+            },
+            {
+              "id": "s058",
+              "type": "exit",
+              "target": "hannah"
+            },
+            {
+              "id": "s059",
+              "type": "exit",
+              "target": "jerry"
+            }
+          ]
+        },
+        {
+          "id": "scene-4-launch-prep",
+          "title": "Перед стартом",
+          "initialState": {
+            "background": "rocketSky",
+            "visibleCharacters": [
+              {
+                "id": "yuri",
+                "slot": "center",
+                "emotion": "neutral"
+              },
+              {
+                "id": "jerry",
+                "slot": "left",
+                "emotion": "calm"
+              },
+              {
+                "id": "john",
+                "slot": "far-left",
+                "emotion": "smirk"
+              },
+              {
+                "id": "maria",
+                "slot": "far-right",
+                "emotion": "annoyed"
+              },
+              {
+                "id": "hannah",
+                "slot": "right",
+                "emotion": "neutral"
+              }
+            ]
+          },
+          "steps": [
+            {
+              "id": "s060",
+              "type": "say",
+              "speaker": "yuri",
+              "emotion": "neutral",
+              "text": "Итак. Запуск совсем скоро. Надеюсь, все придумали, чем заняться - времени у нас буквально вагон."
+            },
+            {
+              "id": "s061",
+              "type": "say",
+              "speaker": "jerry",
+              "emotion": "serious",
+              "text": "Капитан. Думаю, каждому стоит представиться официально."
+            },
+            {
+              "id": "s062",
+              "type": "say",
+              "speaker": "yuri",
+              "emotion": "focused",
+              "text": "Конечно. Сделаем это после запуска и выполнения всех протоколов."
+            },
+            {
+              "id": "s063",
+              "type": "say",
+              "speaker": "john",
+              "emotion": "teasing",
+              "text": "Кюри, а ты придумала чем заняться? Я завертелся и совсем забыл найти интересное занятие!"
+            },
+            {
+              "id": "s064",
+              "type": "say",
+              "speaker": "maria",
+              "emotion": "dry",
+              "text": "Иди с ровером поболтай, вы отлично подходите друг другу."
+            },
+            {
+              "id": "s065",
+              "type": "say",
+              "speaker": "john",
+              "emotion": "thinking",
+              "text": "Ровер-ровер… А почему нет? Как всегда гениальна…"
+            },
+            {
+              "id": "s066",
+              "type": "say",
+              "speaker": "maria",
+              "emotion": "annoyed",
+              "text": "Да-да, отойди от меня…"
+            },
+            {
+              "id": "s067",
+              "type": "say",
+              "speaker": "hannah",
+              "emotion": "skeptical",
+              "text": "Кажется, это будет очень долгий полёт…"
+            },
+            {
+              "id": "s068",
+              "type": "say",
+              "speaker": "yuri",
+              "emotion": "awkward",
+              "text": "Не то слово… Ну, они же поладят, верно?"
+            },
+            {
+              "id": "s069",
+              "type": "say",
+              "speaker": "hannah",
+              "emotion": "neutral",
+              "text": "…"
+            },
+            {
+              "id": "s070",
+              "type": "say",
+              "speaker": "yuri",
+              "emotion": "concerned",
+              "text": "Верно..?"
+            },
+            {
+              "id": "s071",
+              "type": "say",
+              "speaker": "yuri",
+              "emotion": "awkward",
+              "text": "…"
+            },
+            {
+              "id": "s072",
+              "type": "say",
+              "speaker": "yuri",
+              "emotion": "focused",
+              "text": "Ладно, время отбытия. Рассаживайтесь и пристегивайтесь, нас ждет долгое путешествие…"
+            },
+            {
+              "id": "s073",
+              "type": "system",
+              "text": "Конец эпизода 0. Дальше можно запускать анимацию старта, звуковой отсчет и переход к официальному знакомству экипажа."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

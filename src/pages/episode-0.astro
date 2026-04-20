@@ -1,0 +1,17 @@
+---
+import Layout from '../layouts/Layout.astro'
+import VisualNovelPlayer from '../components/common/VisualNovelPlayer.vue'
+import episodeData from '../data/episode0_visual_novel.json'
+---
+
+<Layout title="StoryGames — Эпизод 0">
+  <main class="episode-page">
+    <VisualNovelPlayer
+      client:load
+      story={episodeData}
+      episodeId="episode0"
+      assetsBase="/images/novel"
+      autoStart={true}
+    />
+  </main>
+</Layout>
