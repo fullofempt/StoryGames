@@ -2,15 +2,12 @@
   "meta": {
     "project": "StoryGames",
     "format": "visual-novel-script",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "language": "ru",
     "notes": [
       "Формат рассчитан на Vue/Astro фронтенд с пошаговым проигрыванием сцен.",
-      "Шаги меняют только то, что нужно: фон, эмоцию, появление/уход, реплику, переход.",
-      "Если персонаж говорит несколько раз подряд, это просто несколько steps с одним и тем же speaker.",
-      "Если персонаж должен уйти, используется action=exit или отдельный step типа exit.",
-      "Для анимации лица/спрайта используется поле emotion.",
-      "Для будущей верстки удобно хранить текущее состояние сцены в runtime-store, а JSON использовать как источник команд."
+      "Пути к ассетам подогнаны под public/images/novel/backgrounds и public/images/novel/characters.",
+      "Для плеера используется поле characters[id].emotions[emotion]."
     ]
   },
   "assets": {
@@ -28,11 +25,14 @@
       "name": "Юрий",
       "role": "капитан",
       "defaultEmotion": "neutral",
-      "sprites": {
-        "neutral": "/src/assets/characters/yuri/neutral.png",
-        "focused": "/src/assets/characters/yuri/focused.png",
-        "concerned": "/src/assets/characters/yuri/concerned.png",
-        "awkward": "/src/assets/characters/yuri/awkward.png"
+      "emotions": {
+        "neutral": "/images/novel/characters/yuri/Yuri neutral default.png",
+        "focused": "/images/novel/characters/yuri/Yuri think chinhands.png",
+        "concerned": "/images/novel/characters/yuri/Yuri rolleyes sidehands.png",
+        "awkward": "/images/novel/characters/yuri/Yuri hesitance waving.png",
+        "think": "/images/novel/characters/yuri/Yuri think chinhands.png",
+        "hesitance": "/images/novel/characters/yuri/Yuri hesitance waving.png",
+        "rolleyes": "/images/novel/characters/yuri/Yuri rolleyes sidehands.png"
       }
     },
     "commandCenter": {
@@ -48,62 +48,79 @@
     "selShi": {
       "name": "Сель Ши",
       "role": "член экипажа",
-      "defaultEmotion": "anxious",
-      "sprites": {
-        "neutral": "/src/assets/characters/sel-shi/neutral.png",
-        "anxious": "/src/assets/characters/sel-shi/anxious.png",
-        "sad": "/src/assets/characters/sel-shi/sad.png",
-        "soft": "/src/assets/characters/sel-shi/soft.png"
+      "defaultEmotion": "neutral",
+      "emotions": {
+        "neutral": "/images/novel/characters/sel-shi/Sel Shi neutral default.png",
+        "anxious": "/images/novel/characters/sel-shi/Sel Shi shock napehands.png",
+        "sad": "/images/novel/characters/sel-shi/Sel Shi sad default.png",
+        "soft": "/images/novel/characters/sel-shi/Sel Shi neutral waving.png",
+        "shock": "/images/novel/characters/sel-shi/Sel Shi shock napehands.png",
+        "hesitance": "/images/novel/characters/sel-shi/Sel Shi hesitance default.png",
+        "waving": "/images/novel/characters/sel-shi/Sel Shi neutral waving.png"
       }
     },
     "john": {
       "name": "Джон",
       "role": "член экипажа",
-      "defaultEmotion": "smirk",
-      "sprites": {
-        "neutral": "/src/assets/characters/john/neutral.png",
-        "smirk": "/src/assets/characters/john/smirk.png",
-        "teasing": "/src/assets/characters/john/teasing.png",
-        "thinking": "/src/assets/characters/john/thinking.png"
+      "defaultEmotion": "neutral",
+      "emotions": {
+        "neutral": "/images/novel/characters/john/John neutral default.png",
+        "smirk": "/images/novel/characters/john/John happy sidehands.png",
+        "teasing": "/images/novel/characters/john/John speaking waving.png",
+        "thinking": "/images/novel/characters/john/John think sidehands.png",
+        "happy": "/images/novel/characters/john/John happy sidehands.png",
+        "scorn": "/images/novel/characters/john/John scorn crosshands.png",
+        "speaking": "/images/novel/characters/john/John speaking waving.png",
+        "think": "/images/novel/characters/john/John think sidehands.png"
       }
     },
     "maria": {
       "name": "Мария",
       "role": "член экипажа",
-      "defaultEmotion": "annoyed",
-      "sprites": {
-        "neutral": "/src/assets/characters/maria/neutral.png",
-        "annoyed": "/src/assets/characters/maria/annoyed.png",
-        "angry": "/src/assets/characters/maria/angry.png",
-        "dry": "/src/assets/characters/maria/dry.png"
+      "defaultEmotion": "neutral",
+      "emotions": {
+        "neutral": "/images/novel/characters/maria/Maria neutral default.png",
+        "annoyed": "/images/novel/characters/maria/Maria scorn crosshands.png",
+        "angry": "/images/novel/characters/maria/Maria angry sidehands.png",
+        "dry": "/images/novel/characters/maria/Maria think sidehands.png",
+        "scorn": "/images/novel/characters/maria/Maria scorn crosshands.png",
+        "speaking": "/images/novel/characters/maria/Maria speaking waving.png",
+        "think": "/images/novel/characters/maria/Maria think sidehands.png"
       }
     },
     "jerry": {
       "name": "Джерри",
       "role": "член экипажа",
-      "defaultEmotion": "calm",
-      "sprites": {
-        "neutral": "/src/assets/characters/jerry/neutral.png",
-        "calm": "/src/assets/characters/jerry/calm.png",
-        "respectful": "/src/assets/characters/jerry/respectful.png",
-        "serious": "/src/assets/characters/jerry/serious.png"
+      "defaultEmotion": "neutral",
+      "emotions": {
+        "neutral": "/images/novel/characters/jerry/Jerry neutral default.png",
+        "calm": "/images/novel/characters/jerry/Jerry think waving.png",
+        "respectful": "/images/novel/characters/jerry/Jerry speaking crosshands.png",
+        "serious": "/images/novel/characters/jerry/Jerry speaking waving.png",
+        "speaking": "/images/novel/characters/jerry/Jerry speaking waving.png",
+        "crosshands": "/images/novel/characters/jerry/Jerry speaking crosshands.png",
+        "think": "/images/novel/characters/jerry/Jerry think waving.png"
       }
     },
     "hannah": {
       "name": "Ханна",
       "role": "доктор",
       "defaultEmotion": "neutral",
-      "sprites": {
-        "neutral": "/src/assets/characters/hannah/neutral.png",
-        "skeptical": "/src/assets/characters/hannah/skeptical.png",
-        "kind": "/src/assets/characters/hannah/kind.png",
-        "observing": "/src/assets/characters/hannah/observing.png"
+      "emotions": {
+        "neutral": "/images/novel/characters/hannah/Hanna neutral default.png",
+        "skeptical": "/images/novel/characters/hannah/Hanna scorn crosshands.png",
+        "kind": "/images/novel/characters/hannah/Hanna speaking waving.png",
+        "observing": "/images/novel/characters/hannah/Hanna think crosshands.png",
+        "hesitance": "/images/novel/characters/hannah/Hanna hesitance default.png",
+        "scorn": "/images/novel/characters/hannah/Hanna scorn crosshands.png",
+        "speaking": "/images/novel/characters/hannah/Hanna speaking waving.png",
+        "think": "/images/novel/characters/hannah/Hanna think crosshands.png"
       }
     }
   },
   "episodes": [
     {
-      "id": "episode-0",
+      "id": "episode0",
       "title": "Эпизод 0",
       "scenes": [
         {

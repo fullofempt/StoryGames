@@ -543,7 +543,11 @@ onMounted(() => {
 .vn-character {
   position: absolute;
   bottom: 180px;
-  width: min(24vw, 360px);
+  width: 220px;
+  height: 520px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
   transition: transform 0.25s ease, opacity 0.25s ease, filter 0.25s ease;
   opacity: 0.72;
   filter: saturate(0.8);
@@ -561,8 +565,9 @@ onMounted(() => {
 .vn-sprite {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: contain;
+  object-position: bottom center;
 }
 
 .slot-far-left { left: 2%; }
@@ -747,7 +752,7 @@ onMounted(() => {
 
 @media (max-width: 900px) {
   .vn-character {
-    width: min(34vw, 260px);
+    width: min(20vw, 180px);
     bottom: 220px;
   }
 
