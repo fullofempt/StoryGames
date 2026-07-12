@@ -1,8 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import NewsHero from "../news/NewsHero.astro";
-import NewsSwitch from "../news/NewsSwitch.astro";
+import NewsSwitch from "../news/NewsSwitcher.vue";
 import NewsFeaturedCard from "../news/NewsFeaturedCard.astro";
+import FeaturedNews from "../news/FeaturedNews.vue";
 import ProjectsFooter from "../projects/ProjectsFooter.astro";
 import { featuredNews } from "../data/news-page";
 import SiteHeader from "@/layouts/SiteHeader.astro";
@@ -20,8 +21,8 @@ import SiteHeader from "@/layouts/SiteHeader.astro";
 
         <div class="relative z-10">
             <NewsHero />
-            <NewsSwitch />
-            <NewsFeaturedCard {...featuredNews} />
+            <NewsSwitch client:load />
+            <FeaturedNews client:load />
             <ProjectsFooter />
         </div>
     </div>

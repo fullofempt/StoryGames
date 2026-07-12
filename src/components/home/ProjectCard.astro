@@ -3,18 +3,58 @@ interface Props {
   title: string;
   image: string;
   description: string;
+  link: string;
 }
-const { title, image, description } = Astro.props;
+
+const { title, image, description, link } = Astro.props;
 ---
 
-<article class="overflow-hidden font-handil rounded-[20px] border border-cyan-200/20 bg-white/5 shadow-xl backdrop-blur-sm">
-  <div class="relative h-64 overflow-hidden md:h-80">
-    <img src={image} alt={title} class="h-full w-full object-cover" />
-    <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.05)_0%,rgba(29,10,44,0.68)_100%)]"></div>
-  </div>
+<a
+  href={link}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="group block overflow-hidden rounded-[20px] border border-cyan-200/20 bg-white/5 font-handil shadow-xl backdrop-blur-sm transition-all duration-500 hover:-translate-y-3 hover:border-cyan-300/70 hover:bg-white/10 hover:shadow-[0_20px_50px_rgba(108,203,200,0.25)]"
+>
+  <article>
+    <!-- Image -->
+    <div class="relative h-64 overflow-hidden md:h-80">
+      <img
+        src={image}
+        alt={title}
+        class="h-full w-full object-cover transition duration-700 group-hover:scale-110"
+      />
 
-  <div class="px-6 py-6 text-center">
-    <h3 class="font-hand text-3xl text-white md:text-4xl">{title}</h3>
-    <p class="mt-4 text-base leading-7 text-white/85 md:text-lg">{description}</p>
-  </div>
-</article>
+      <div
+        class="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.05)_0%,rgba(29,10,44,0.75)_100%)]"
+      >
+      </div>
+
+      <!-- hover glow -->
+      <div
+        class="absolute inset-0 bg-cyan-300/10 opacity-0 transition duration-500 group-hover:opacity-100"
+      >
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="flex min-h-[260px] flex-col px-6 py-6 text-center">
+      <h3
+        class="font-hand text-3xl text-white transition duration-300 group-hover:text-[#7AF6EB] md:text-4xl"
+      >
+        {title}
+      </h3>
+
+      <p class="mt-4 text-base leading-7 text-white/85 md:text-lg">
+        {description}
+      </p>
+
+      <!-- <div class="mt-auto flex justify-center pt-8">
+        <span
+          class="inline-flex items-center justify-center rounded-full border border-[#7AF6EB]/50 bg-white/10 px-8 py-3 text-sm font-bold uppercase tracking-wider text-white transition-all duration-300 group-hover:bg-[#7AF6EB]/20 group-hover:text-[#7AF6EB]"
+        >
+          Перейти к игре
+        </span>
+      </div> -->
+    </div>
+  </article>
+</a>
