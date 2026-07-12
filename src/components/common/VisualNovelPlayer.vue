@@ -49,13 +49,9 @@ const assets = computed(() =>
 
 const sceneIndex = ref(0);
 const stepIndex = ref(-1);
-
 const started = ref(false);
-
 const dialogue = ref<any>(null);
-
 const systemText = ref("");
-
 const transition = ref(false);
 
 
@@ -617,13 +613,9 @@ onMounted(() => {
 
 
 .vn-stage {
-
   position: absolute;
-
   inset: 0;
-
   pointer-events: none;
-
 }
 
 
@@ -695,49 +687,28 @@ onMounted(() => {
 
 /* 6 positions */
 
-
 .slot-far-left {
-
   left: 2%;
-
 }
-
 
 .slot-left {
-
   left: 18%;
-
 }
-
 
 .slot-center-left {
-
   left: 32%;
-
 }
-
-
 
 .slot-center-right {
-
   right: 32%;
-
 }
-
-
 
 .slot-right {
-
   right: 18%;
-
 }
 
-
-
 .slot-far-right {
-
   right: 2%;
-
 }
 
 

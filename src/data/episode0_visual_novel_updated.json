@@ -609,7 +609,7 @@
               },
               {
                 "id": "john",
-                "slot": "far-left",
+                "slot": "left",
                 "emotion": "smirk"
               },
               {
@@ -619,7 +619,7 @@
               },
               {
                 "id": "hannah",
-                "slot": "center-right",
+                "slot": "right",
                 "emotion": "neutral"
               }
             ]
