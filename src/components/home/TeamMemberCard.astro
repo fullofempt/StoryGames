@@ -15,6 +15,34 @@ const { name, role, image, stats } = Astro.props;
 
 const getBarClass = (index: number) => {
   const classes = [
+    "bg-[#87FF1F]",
+    "bg-[#FFDD1F]",
+    "bg-[#FF8F1F]",
+    "bg-[#FF4C1F]",
+    "bg-[#FF1F1F]",
+  ];
+
+  return classes[index] ?? "bg-[#87FF1F]";
+};
+---
+
+<!-- ---
+interface Stat {
+  label: string;
+  value: number;
+}
+
+interface Props {
+  name: string;
+  role: string;
+  image: string;
+  stats: Stat[];
+}
+
+const { name, role, image, stats } = Astro.props;
+
+const getBarClass = (index: number) => {
+  const classes = [
     'bg-[#87FF1F]',
     'bg-[#FFDD1F]',
     'bg-[#FF8F1F]',
@@ -81,4 +109,282 @@ const getBarClass = (index: number) => {
       </div>
     </div>
   </div>
+</article> -->
+<article
+  class="group
+relative
+overflow-hidden
+rounded-[20px]
+border-[3px]
+border-[#00A8CE]
+bg-[linear-gradient(180deg,rgba(25,9,37,0.78)_0%,rgba(91,40,67,0.78)_20%,rgba(154,71,96,0.78)_40%,rgba(91,40,67,0.78)_74%,rgba(25,9,37,0.78)_100%)]
+shadow-[0_12px_40px_rgba(0,0,0,0.35)]
+transition-all
+duration-500
+hover:-translate-y-3
+hover:border-[#7AF6EB]
+hover:shadow-[0_0_60px_rgba(122,246,235,0.45)]"
+>
+  <!-- Светящийся фон -->
+
+  <div
+    class="pointer-events-none
+absolute
+inset-0
+opacity-0
+transition-opacity
+duration-500
+group-hover:opacity-100
+bg-[radial-gradient(circle_at_top,rgba(122,246,235,0.2),transparent_55%)]"
+  >
+  </div>
+
+  <div class="relative
+grid
+grid-cols-1
+lg:grid-cols-[360px_minmax(0,1fr)]">
+    <!-- IMAGE -->
+
+    <div
+      class="relative
+min-h-[360px]
+overflow-hidden
+border-b
+border-cyan-400/30
+lg:min-h-[560px]
+lg:border-r
+lg:border-b-0"
+    >
+      <!-- glow -->
+
+      <div
+        class="absolute
+inset-0
+bg-[radial-gradient(circle_at_center,rgba(0,168,206,0.22),transparent_70%)]
+transition
+duration-700
+group-hover:scale-125"
+      >
+      </div>
+
+      <!-- рамка -->
+
+      <div
+        class="absolute
+inset-3
+rounded-[14px]
+border-2
+border-[#00A8CE]/60
+opacity-30
+blur-[2px]
+transition
+duration-500
+group-hover:opacity-80"
+      >
+      </div>
+
+      <img
+        src={image}
+        alt={name}
+        class="relative
+z-10
+h-full
+w-full
+object-cover
+object-top
+transition-all
+duration-700
+group-hover:scale-110
+group-hover:brightness-110"
+      />
+    </div>
+
+    <!-- CONTENT -->
+
+    <div class="relative
+flex
+flex-col
+justify-between
+p-6
+md:p-8
+lg:p-10">
+      <div>
+        <h3
+          class="font-handil
+text-3xl
+uppercase
+leading-tight
+text-white
+transition-all
+duration-300
+md:text-5xl
+lg:text-6xl
+group-hover:-translate-y-2
+group-hover:text-[#7AF6EB]"
+        >
+          {name}
+        </h3>
+
+        <p
+          class="mt-2
+text-xl
+uppercase
+tracking-[0.2em]
+text-white/80
+transition
+duration-300
+group-hover:text-white
+md:text-2xl"
+        >
+          {role}
+        </p>
+
+        <!-- STATS -->
+
+        <div class="mt-8
+space-y-6">
+          {
+            stats.map((stat, statIndex) => (
+              <div
+                class="
+transition-all
+duration-500
+
+group-hover:translate-x-2
+"
+              >
+                <div
+                  class="
+mb-3
+
+flex
+
+items-center
+
+justify-between
+
+gap-4
+"
+                >
+                  <span
+                    class="
+font-handil
+
+text-lg
+
+uppercase
+
+tracking-[0.08em]
+
+text-white
+
+md:text-2xl
+"
+                  >
+                    {stat.label}
+                  </span>
+
+                  <span
+                    class="
+text-sm
+
+text-white/60
+"
+                  >
+                    {stat.value}/5
+                  </span>
+                </div>
+
+                <div
+                  class="
+flex
+
+flex-wrap
+
+gap-2
+"
+                >
+                  {Array.from({ length: 5 }).map((_, index) => (
+                    <span
+                      class:list={[
+                        "h-[18px]",
+                        "w-[43px]",
+                        "rounded-[5px]",
+
+                        "transition-all",
+                        "duration-500",
+
+                        "hover:scale-125",
+
+                        index < stat.value
+                          ? `${getBarClass(index)} stat-bar`
+                          : "bg-white/10 border border-white/10",
+                      ]}
+                      style={`animation-delay:${index * 100}ms`}
+                    />
+                  ))}
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- DESCRIPTION -->
+
+      <div
+        class="mt-8
+border-t
+border-white/10
+pt-6
+text-sm
+leading-6
+text-white/75
+transition
+duration-500
+group-hover:text-white
+md:text-base"
+      >
+        Участник команды StoryGames. Тут описание роли, опыта, сильных сторон и
+        вклада в проекты студии.
+      </div>
+    </div>
+  </div>
 </article>
+
+<style>
+  .stat-bar {
+    transform-origin: left;
+
+    animation: statAppear 0.6s ease forwards;
+  }
+
+  @keyframes statAppear {
+    from {
+      transform: scaleX(0);
+
+      opacity: 0;
+    }
+
+    to {
+      transform: scaleX(1);
+
+      opacity: 1;
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+
+  article:hover img {
+    animation: float 3s ease-in-out infinite;
+  }
+</style>
